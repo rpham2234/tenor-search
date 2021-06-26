@@ -5,10 +5,26 @@ const express = require('express');
 const app = express();
 
 // Middleware
+const exphbs = require('express-handlebars');
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // Routes
-app.get("/:username", (req, res) => {
-  res.send("Hello Squirrel");
+app.get('/', (req, res) => {
+  // set the url of the gif
+  const gifUrl = 'https://media1.tenor.com/images/561c988433b8d71d378c9ccb4b719b6c/tenor.gif?itemid=10058245'
+  // render the hello-gif view, passing the gifUrl into the view to be displayed
+  res.render('hello-gif', { gifUrl })
+})
+
+app.get('/greetings/:name', (req, res) => {
+
+  // takes the name from the url path
+  const name = req.params.name;
+
+  //uses the greetings handlebar template stored in "Views, to show the name provided in the Url path."
+  res.render('greetings', {name});
 })
 // Start Server
 
