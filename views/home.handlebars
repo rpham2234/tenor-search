@@ -2,15 +2,25 @@
 <h1>Search for GIFS</h1>
 <form action="/">
   <input type="text" name="term" placeholder="Search">
+  <script src="../public/copy.js"></script>
   <button type="submit">Search</button>
 </form>
-
-{{#each gifs}}
-{{!-- set the data-width to whatever you want --}}
-{{!-- Note that we're using properties of the gif (id, itemurl, url) to fill in information needed to render the gif --}}
-    <div class="tenor-gif-embed" data-postid="{{this.id}}" data-share-method="host" data-width="500px"
-      data-aspect-ratio="1.2266666666666666"><a
-          href="{{this.itemurl}}"></a>
-      <a href="{{this.url}}"></a></div>
-    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-{{/each}}
+<div class="col-lg-4">
+  {{#each gifs}}
+    {{!-- set the data-width to whatever you want --}}
+    {{!-- Note that we're using properties of the gif (id, itemurl, url) to fill in information needed to render the gif --}}
+    <div class="card mb-4" style="width: 500px;">
+      <div class="tenor-gif-embed" data-postid="{{this.id}}" data-share-method="host" data-width="500px"
+          data-aspect-ratio="1.2266666666666666"><a
+              href="{{this.itemurl}}"></a>
+          <a href="{{this.url}}"></a></div>
+      <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">
+          {{this.itemurl}}
+        </p>
+      </div>
+    </div>
+  {{/each}}
+</div>
