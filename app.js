@@ -4,6 +4,9 @@ const express = require('express');
 // App Setup
 const app = express();
 
+// Port
+const port = process.env.port || 3000;
+
 // Somewhere near the top
 app.use(express.static('public')); //our CSS stuff will be in the public folder.
 
@@ -52,6 +55,6 @@ app.get('/greetings/:name', (req, res) => {
 })
 // Start Server
 
-app.listen(3000, () => {
-  console.log('Gif Search listening on port localhost:3000!');
+app.listen(port, () => {
+  console.log('Gif Search listening on port localhost:' + port + "!");
 });
